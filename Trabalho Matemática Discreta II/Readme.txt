@@ -1,0 +1,1 @@
+O intúito deste trabalho era simular um caixa eletrônico que possa fazer o saque de uma quantia determinada pelo usuário de forma que seria retornada a menor e segunda menor quantia que este saque poderá ser feito com apenas duas cédulas determinadas pelo usuário.
