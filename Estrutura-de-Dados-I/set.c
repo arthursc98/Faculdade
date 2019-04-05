@@ -108,6 +108,8 @@ void set_intersection(set c, set c2, set * c3)
     for(i=0,j=0;i<c.n;i++)//Percorre o Set todo para ver se o item está contido.
     {
         if(set_member(c2,c.itens[i])){   //Caso o item do primeiro Set esteja contido no segundo Set
+            if(c3->n>=SET_MAX-1)//Verifica se o Set está cheio caso esteja quebra o laço.
+                break;
             c3->itens[j++]=c.itens[i];   //irá passar este item para o terceiro Set.
             c3->n++;
         }
@@ -122,7 +124,7 @@ bool set_difference(set c, set c2, set * c3)
     {
         if(!set_member(c2,c.itens[i]))//Passa todos os elementos diferentes entre o primeiro set e o segundo set
         {                             //para o terceiro.
-            if(c3->n>SET_MAX-1)//Verifica se o Set está cheio caso esteja retorna falso.
+            if(c3->n>=SET_MAX-1)//Verifica se o Set está cheio caso esteja retorna falso.
                 return false;
             c3->itens[j++]=c.itens[i];
             c3->n++;
@@ -132,7 +134,7 @@ bool set_difference(set c, set c2, set * c3)
     {
         if(!set_member(c,c2.itens[i]))//Passa todos os elementos diferentes entre o segundo set e o primeiro set
         {                             //para o terceiro.
-            if(c3->n>SET_MAX-1)//Verifica se o Set está cheio caso esteja retorna falso.
+            if(c3->n>=SET_MAX-1)//Verifica se o Set está cheio caso esteja retorna falso.
                 return false;
             c3->itens[j++]=c2.itens[i];
             c3->n++;
