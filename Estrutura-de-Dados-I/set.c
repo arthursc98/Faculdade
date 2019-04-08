@@ -82,17 +82,15 @@ bool set_union(set c, set c2, set * c3)
     if (c.n+c2.n<=SET_MAX)
     {
         set_init(c3);//Inicializa o 3º Set.
-        int i,j,k;
+        int i;
         for(i=0;i<c.n;i++)//Joga todos os itens do primeiro Set para o terceiro.
         {
-            c3->itens[i]=c.itens[i];
-            c3->n++;
+            c3->itens[c3->n++]=c.itens[i];
         }
-        for(j=i,k=0;k<c2.n;k++)
+        for(i=0;i<c2.n;i++)
         {
-            if(!set_member(*c3,c2.itens[k])){//Caso o item do segundo set não seja membro ele entra no terceiro.
-                c3->itens[j++]=c2.itens[k];
-                c3->n++;
+            if(!set_member(*c3,c2.itens[i])){//Caso o item do segundo set não seja membro ele entra no terceiro.
+                c3->itens[c3->n++]=c2.itens[i];
             }
         }
         return true;
@@ -103,41 +101,38 @@ bool set_union(set c, set c2, set * c3)
 
 void set_intersection(set c, set c2, set * c3)
 {
+    int i;
     set_init(c3);//Inicializa o 3º Set.
-    int i,j;
-    for(i=0,j=0;i<c.n;i++)//Percorre o Set todo para ver se o item está contido.
+    for(i=0;i<c.n;i++)//Percorre o Set todo para ver se o item está contido.
     {
         if(set_member(c2,c.itens[i])){   //Caso o item do primeiro Set esteja contido no segundo Set
-            if(!set_isfull(*c3))//Verifica se o Set está cheio caso esteja quebra o laço.
+            if(set_isfull(*c3))//Verifica se o Set está cheio caso esteja quebra o laço.
                 break;
-            c3->itens[j++]=c.itens[i];   //irá passar este item para o terceiro Set.
-            c3->n++;
+            c3->itens[c3->n++]=c.itens[i];   //irá passar este item para o terceiro Set.
         }
     }
 }
 
 bool set_difference(set c, set c2, set * c3)
 {
+    int i;
     set_init(c3);//Inicializa o 3º Set.
-    int i,j;
-    for(i=0,j=0;i<c.n;i++)
+    for(i=0;i<c.n;i++)
     {
         if(!set_member(c2,c.itens[i]))//Passa todos os elementos diferentes entre o primeiro set e o segundo set
         {                             //para o terceiro.
-            if(!set_isfull(*c3))//Verifica se o Set está cheio caso esteja retorna falso.
+            if(set_isfull(*c3))//Verifica se o Set está cheio caso esteja retorna falso.
                 return false;
-            c3->itens[j++]=c.itens[i];
-            c3->n++;
+            c3->itens[c3->n++]=c.itens[i];
         }
     }
     for(i=0;i<c2.n;i++)
     {
         if(!set_member(c,c2.itens[i]))//Passa todos os elementos diferentes entre o segundo set e o primeiro set
         {                             //para o terceiro.
-            if(!set_isfull(*c3))//Verifica se o Set está cheio caso esteja retorna falso.
+            if(set_isfull(*c3))//Verifica se o Set está cheio caso esteja retorna falso.
                 return false;
-            c3->itens[j++]=c2.itens[i];
-            c3->n++;
+            c3->itens[c3->n++]=c2.itens[i];
         }
     }
     return true;
@@ -165,7 +160,7 @@ void clearscr()
 
 void pause()
 {
-    printf("Pressione qualquer tecla para continuar...");
+    printf("Pressione enter para continuar...");
     getchar();
     scanf("c\n");
 }
