@@ -113,7 +113,7 @@ void set_intersection(set c, set c2, set * c3)
     }
 }
 
-bool set_difference(set c, set c2, set * c3)
+void set_difference(set c, set c2, set * c3)
 {
     int i;
     set_init(c3);//Inicializa o 3º Set.
@@ -121,8 +121,8 @@ bool set_difference(set c, set c2, set * c3)
     {
         if(!set_member(c2,c.itens[i]))//Passa todos os elementos diferentes entre o primeiro set e o segundo set
         {                             //para o terceiro.
-            if(set_isfull(*c3))//Verifica se o Set está cheio caso esteja retorna falso.
-                return false;
+            if(set_isfull(*c3))//Verifica se o Set está cheio caso esteja quebra o laço.
+                break;
             c3->itens[c3->n++]=c.itens[i];
         }
     }
@@ -130,12 +130,11 @@ bool set_difference(set c, set c2, set * c3)
     {
         if(!set_member(c,c2.itens[i]))//Passa todos os elementos diferentes entre o segundo set e o primeiro set
         {                             //para o terceiro.
-            if(set_isfull(*c3))//Verifica se o Set está cheio caso esteja retorna falso.
-                return false;
+            if(set_isfull(*c3))//Verifica se o Set está cheio caso esteja quebra o laço.
+                break;
             c3->itens[c3->n++]=c2.itens[i];
         }
     }
-    return true;
 }
 
 void set_print(set c)
