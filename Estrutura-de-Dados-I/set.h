@@ -1,11 +1,11 @@
 /*
  * set.c
- * ImplementaÁ„o das operaÁıes realizadas sobre um set (Conjunto)
- * de n˙meros inteiros.
+ * Implementa√ß√£o das opera√ß√µes realizadas sobre um set (Conjunto)
+ * de n√∫meros inteiros.
  *
- * Arthur Silveira Chaves (Sistemas de InformaÁ„o)
- * Beatriz Jonas Justino (Sistemas de InformaÁ„o)
- * Nicholas Meirinho Perez (Sistemas de InformaÁ„o)
+ * Arthur Silveira Chaves (Sistemas de Informa√ß√£o)
+ * Beatriz Jonas Justino (Sistemas de Informa√ß√£o)
+ * Nicholas Meirinho Perez (Sistemas de Informa√ß√£o)
  * Disciplina: Estrutura de Dados-I
  *
  * 02/04/2019
@@ -14,48 +14,48 @@
 #define _SET_H
 #define SET_MAX 10
 #include <stdbool.h>
-/* definiÁ„o do TAD set */
+/* defini√ß√£o do TAD set */
 typedef int set_info;
 typedef struct
 {
     set_info itens[SET_MAX];
     int n;
 } set;
-/* funÁ„o que inicializa um conjunto vazio */
+/* fun√ß√£o que inicializa um conjunto vazio */
 void set_init(set *);
-/* funÁ„o que verifica se um conjunto est· vazio */
+/* fun√ß√£o que verifica se um conjunto est√° vazio */
 bool set_isempty(set);
-/* funÁ„o que verifica se um conjunto est· cheio */
+/* fun√ß√£o que verifica se um conjunto est√° cheio */
 bool set_isfull(set);
-/* funÁ„o que devolve verdadeiro se um valor È membro
- do conjunto, ou falso, caso contr·rio */
+/* fun√ß√£o que devolve verdadeiro se um valor √© membro
+ do conjunto, ou falso, caso contr√°rio */
 bool set_member(set, set_info);
-/* funÁ„o que insere um valor no conjunto e devolve verdadeiro
- se a operaÁ„o foi bem-sucedida, ou falso, caso contr·rio
+/* fun√ß√£o que insere um valor no conjunto e devolve verdadeiro
+ se a opera√ß√£o foi bem-sucedida, ou falso, caso contr√°rio
  (conjunto cheio ou elemento repetido) */
 bool set_insert(set *, set_info);
-/* funÁ„o que remove um valor do conjunto e devolve verdadeiro
- se a operaÁ„o foi bem-sucedida, ou falso, caso contr·rio
- (o valor n„o est· contido no conjunto) */
+/* fun√ß√£o que remove um valor do conjunto e devolve verdadeiro
+ se a opera√ß√£o foi bem-sucedida, ou falso, caso contr√°rio
+ (o valor n√£o est√° contido no conjunto) */
 bool set_remove(set *, set_info);
-/* funÁ„o que atribui ao seu 3o. argumento (um conjunto) o
- resultado da uni„o entre os 2 primeiros conjuntos passados como
- argumentos e devolve verdadeiro se a operaÁ„o foi bem-sucedida
- (n„o houve um estouro da capacidade do 3o. argumento, ou falso,
- caso contr·rio) */
+/* fun√ß√£o que atribui ao seu 3o. argumento (um conjunto) o
+ resultado da uni√£o entre os 2 primeiros conjuntos passados como
+ argumentos e devolve verdadeiro se a opera√ß√£o foi bem-sucedida
+ (n√£o houve um estouro da capacidade do 3o. argumento, ou falso,
+ caso contr√°rio) */
 bool set_union(set, set, set *);
-/* funÁ„o que atribui ao seu 3o. argumento (um conjunto) o
- resultado da intersecÁ„o entre os 2 primeiros conjuntos passados
+/* fun√ß√£o que atribui ao seu 3o. argumento (um conjunto) o
+ resultado da intersec√ß√£o entre os 2 primeiros conjuntos passados
  como argumentos */
 void set_intersection(set, set, set *);
-/* funÁ„o que atribui ao seu 3o. argumento (um conjunto) o
- resultado da diferenÁa entre os 2 primeiros conjuntos passados
+/* fun√ß√£o que atribui ao seu 3o. argumento (um conjunto) o
+ resultado da diferen√ßa entre os 2 primeiros conjuntos passados
  como argumentos */
-bool set_difference(set, set, set *);
-/* funÁ„o que imprime todos os membros do conjunto */
+void set_difference(set, set, set *);
+/* fun√ß√£o que imprime todos os membros do conjunto */
 void set_print(set);
-/* FunÁ„o que pausa o sistema */
+/* Fun√ß√£o que pausa o sistema */
 void pause();
-/* FunÁ„o que limpa a tela */
+/* Fun√ß√£o que limpa a tela */
 void clearscr();
 #endif
