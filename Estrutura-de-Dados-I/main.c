@@ -1,11 +1,11 @@
 /*
  * main.c
- * Implementação das operações realizadas sobre um set (Conjunto)
- * de números inteiros.
+ * ImplementaÃ§Ã£o das operaÃ§Ãµes realizadas sobre um set (Conjunto)
+ * de nÃºmeros inteiros.
  *
- * Arthur Silveira Chaves (Sistemas de Informação)
- * Beatriz Jonas Justino (Sistemas de Informação)
- * Nicholas Meirinho Perez (Sistemas de Informação)
+ * Arthur Silveira Chaves (Sistemas de InformaÃ§Ã£o)
+ * Beatriz Jonas Justino (Sistemas de InformaÃ§Ã£o)
+ * Nicholas Meirinho Perez (Sistemas de InformaÃ§Ã£o)
  * Disciplina: Estrutura de Dados-I
  *
  * 02/04/2019
@@ -24,7 +24,7 @@ int main()
         printf("+=============================+\n");
         printf("|          CONJUNTOS          |\n");
         printf("+=============================+\n");
-        printf("|            Opções           |\n");
+        printf("|            OpÃ§Ãµes           |\n");
         printf("+=============================+\n");
         printf("|  <1> Inserir no 1o conjunto |\n");
         printf("|  <2> Inserir no 2o conjunto |\n");
@@ -32,7 +32,7 @@ int main()
         printf("|  <4> Remover do 2o conjunto |\n");
         printf("|  <5> Imprimir o 1o conjunto |\n");
         printf("|  <6> Imprimir o 2o conjunto |\n");
-        printf("|   <7> União dos conjuntos   |\n");
+        printf("|   <7> UniÃ£o dos conjuntos   |\n");
         printf("|<8> Interseccao dos conjuntos|\n");
         printf("| <9> Diferenca dos conjuntos |\n");
         printf("|     <0> Sair do programa    |\n");
@@ -152,7 +152,7 @@ int main()
             else
             {
                 printf("+=======================================================+\n");
-                printf("|  Erro: não ha' espaco suficiente para essa operacao!  |\n");
+                printf("|  Erro: nÃ£o ha' espaco suficiente para essa operacao!  |\n");
                 printf("+=======================================================+\n");
             }
             pause();
@@ -168,18 +168,11 @@ int main()
             clearscr();
             break;
         case 9:
-            if(set_difference(s1, s2, &s3)){
-                printf("+==============================+\n");
-                printf("|  Diferenca dos 2 conjuntos:  |\n");
-                printf("+==============================+\n");
-                set_print(s3);
-            }
-            else
-            {
-                printf("+=======================================================+\n");
-                printf("|  Erro: não ha' espaco suficiente para essa operacao!  |\n");
-                printf("+=======================================================+\n");
-            }
+            set_difference(s1, s2, &s3);
+            printf("+==============================+\n");
+            printf("|  Diferenca dos 2 conjuntos:  |\n");
+            printf("+==============================+\n");
+            set_print(s3);
             pause();
             clearscr();
             break;
