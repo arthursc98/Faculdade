@@ -76,13 +76,13 @@ void menu()
 
 void clearscr()
 {
-#ifdef _WIN32
-    system("cls");
-#elif defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
-    system("clear");
-#else
-#error "OS not supported."
-#endif
+	#ifdef _WIN32
+	    system("cls");
+	#elif defined(unix) || defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+	    system("clear");
+	#else
+	#error "OS not supported."
+	#endif
 }
 
 void pause()

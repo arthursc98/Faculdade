@@ -23,8 +23,6 @@
 
 #define FILENAME "cobertura_vacinal.csv"
 
-char * retira_enter(char *);
-
 int main()
 {
 	FILE * f;

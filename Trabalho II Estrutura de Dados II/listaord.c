@@ -12,6 +12,7 @@
  * 13/11/2019
  */
 
+#include "hashmap.h"
 #include "listaord.h"
 #include <stdlib.h>
 #include <stdio.h>
