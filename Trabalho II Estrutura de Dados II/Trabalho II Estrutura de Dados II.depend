@@ -1,0 +1,57 @@
+# depslib dependency file v1.0
+1573514581 source:c:\users\arthur\desktop\cirinhoo\lista.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1573514560 c:\users\arthur\desktop\cirinhoo\lista.h
+
+1573666555 source:c:\users\arthur\desktop\cirinhoo\avl.c
+	"avl.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1573666885 c:\users\arthur\desktop\cirinhoo\avl.h
+	<stdbool.h>
+
+1573666641 source:c:\users\arthur\desktop\cirinhoo\hashmap.c
+	"hashmap.h"
+	"listaord.h"
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1573666985 c:\users\arthur\desktop\cirinhoo\hashmap.h
+	<stdbool.h>
+
+1573666815 c:\users\arthur\desktop\cirinhoo\listaord.h
+	"hashmap.h"
+	<stdbool.h>
+
+1573666188 source:c:\users\arthur\desktop\cirinhoo\main.c
+	"hashmap.h"
+	"cobertura.h"
+	"avl.h"
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+
+1573666762 source:c:\users\arthur\desktop\cirinhoo\listaord.c
+	"listaord.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1573666229 c:\users\arthur\desktop\cirinhoo\cobertura.h
+	"hashmap.h"
+	"avl.h"
+
+1573666305 source:c:\users\arthur\desktop\cirinhoo\cobertura.c
+	"hashmap.h"
+	"avl.h"
+	<stdio.h>
+	<stdbool.h>
+
