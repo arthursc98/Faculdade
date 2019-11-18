@@ -24,7 +24,7 @@ void consult(hash_map m){
     scanf("%d",&key);
     pval=map_get(m,key);        // Consulta o HashMap e devolve o map_value
     if(pval!=NULL)
-        printf("\nConsulta com chave: %d\nNome do Município: %s\nCobertura Vacinal: %.2lf\n",key,pval->nome_muni,pval->cobertura);
+        printf("\nConsulta com chave: %d\nNome do Município: %s\nCobertura Vacinal: %.3lf\n",key,pval->nome_muni,pval->cobertura);
     else
         printf("Chave não encontrada.\n");
 }
@@ -38,7 +38,7 @@ void print_inorder(avl_tree t, int n, int * i)
         {
             print_inorder(t->esq,n,i);
             if(++*i<=n)             // Verifica se o contador já printou toda a quantidade requisitada
-                printf("Chave: %d\tNome do Município: %s\tCobertura Vacinal: %.2lf\n",t->dado.key,t->dado.nome_muni,t->dado.cobertura);
+                printf("Chave: %d\tNome do Município: %s\tCobertura Vacinal: %.3lf\n",t->dado.key,t->dado.nome_muni,t->dado.cobertura);
             print_inorder(t->dir,n,i);
         }
     }
@@ -53,7 +53,7 @@ void print_inorder_desc(avl_tree t, int n, int * i)
         {
             print_inorder_desc(t->dir,n,i);
             if(++*i<=n)                  // Verifica se o contador já printou toda a quantidade requisitada
-                printf("Chave: %d\tNome do Município: %s\tCobertura Vacinal: %.2lf\n",t->dado.key,t->dado.nome_muni,t->dado.cobertura);
+                printf("Chave: %d\tNome do Município: %s\tCobertura Vacinal: %.3lf\n",t->dado.key,t->dado.nome_muni,t->dado.cobertura);
             print_inorder_desc(t->esq,n,i);
 
         }
