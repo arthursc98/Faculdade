@@ -10,7 +10,7 @@
  *
  * Disciplina: Estrutura de Dados-II
  *
- * 17/11/2019
+ * 18/11/2019
  */
 
 #include <stdio.h>
@@ -76,35 +76,37 @@ void input_operation(int * op)
 // Printa a tabela
 void print_table(float std, float * index_col,int precision)
 {
-    for(int k=0;k<20+5*precision;k++)   printf(" ");
+    int k,i,j;
+    for(k=0;k<20+5*precision;k++)   printf(" ");
     printf("Tabela Z com mu=0 e sigma=%.2f\n\n",std);
-    for(int i=0; i<10; i++)
+    for(i=0; i<10; i++)
     {
         if(i==0)    printf("|z  |   ");
 	int spaces=precision/2;
 	if(precision%2==0){
 		printf("|");
-		for(int k=0;k<spaces;k++)   printf(" ");
+		for(k=0;k<spaces;k++)   printf(" ");
 		printf("%d",i);
-		for(int k=0;k<spaces;k++)   printf(" ");
+		for(k=0;k<spaces;k++)   printf(" ");
 		printf(" |\t");
 	}
 	else{
 		printf("|");
-		for(int k=0;k<spaces;k++)   printf(" ");
+		for(k=0;k<spaces;k++)   printf(" ");
 		printf("%d",i);
-		for(int k=0;k<spaces;k++)   printf(" ");
+		for(k=0;k<spaces;k++)   printf(" ");
 		printf("  |\t");
 	}
     }
-    for(int j=0; j<(std/.1); j++)
+    for(j=0; j<(std/.1); j++)
     {
         printf("\n|%.1f|\t",index_col[j]);
-        for(double k=0;k<10;k++){
-            if(k!=9)
-                printf("|%.*lf|\t",precision,f(index_col[j]+(k/100),precision));
+	double c;
+        for(c=0;c<10;c++){
+            if(c!=9)
+                printf("|%.*lf|\t",precision,f(index_col[j]+(c/100),precision));
             else
-                printf("|%.*lf|",precision,f(index_col[j]+(k/100),precision));
+                printf("|%.*lf|",precision,f(index_col[j]+(c/100),precision));
         }
     }
 }
@@ -132,10 +134,10 @@ void menu()
 // Cria o index da coluna de z
 float * create_index_col(float std)
 {
-    int index_qtd=(std/.1)+1;
+    int index_qtd=(std/.1)+1,i;
     float resto=(std-(std/.1*.1))+1;
     float * index_col=malloc((index_qtd+1+resto)*sizeof(float));
-    for(int i=0; i<index_qtd; i++)
+    for(i=0; i<index_qtd; i++)
     {
 	if (i==0)
 	    index_col[i]=.0;
