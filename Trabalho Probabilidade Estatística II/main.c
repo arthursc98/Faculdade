@@ -13,6 +13,7 @@
  * 18/11/2019
  */
 
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -25,6 +26,9 @@ void input_precision(int * precision);
 void input_std(float * std);
 void input_operation(int * op);
 void print_table(float std, float * index_col, int precision);
+void savefile(float std,float * index_col, int precision);
+void savecsv(float std,float * index_col, int precision);
+void savemenu();
 void menu();
 float * create_index_col(float std);
 double f(double x, int precision);
@@ -53,8 +57,7 @@ void clearscr()
 // Input de precisão
 void input_precision(int * precision)
 {
-    printf("Exemplo: 1e-10=10 (10 números após a virgula)\n");
-    printf("Digite a precisão:\n");
+    printf("Digite quantos números após a vírgula mostrará a tabela:\n");
     scanf(" %d",&(*precision));
 }
 
@@ -62,7 +65,7 @@ void input_precision(int * precision)
 // Input de desvios-padrões
 void input_std(float * std)
 {
-    printf("Digite quantos desvio-padrão(ões) deseja utilizar:\n");
+    printf("Digite quantos desvio-padrão(ões) deseja ter a tabela:\n");
     scanf(" %f",&(*std));
 }
 
@@ -77,40 +80,115 @@ void input_operation(int * op)
 void print_table(float std, float * index_col,int precision)
 {
     int k,i,j;
-    for(k=0;k<20+5*precision;k++)   printf(" ");
+    for(k=0; k<20+5*precision; k++)
+        printf(" ");
     printf("Tabela Z com mu=0 e sigma=%.2f\n\n",std);
     for(i=0; i<10; i++)
     {
-        if(i==0)    printf("|z  |   ");
-	int spaces=precision/2;
-	if(precision%2==0){
-		printf("|");
-		for(k=0;k<spaces;k++)   printf(" ");
-		printf("%d",i);
-		for(k=0;k<spaces;k++)   printf(" ");
-		printf(" |\t");
-	}
-	else{
-		printf("|");
-		for(k=0;k<spaces;k++)   printf(" ");
-		printf("%d",i);
-		for(k=0;k<spaces;k++)   printf(" ");
-		printf("  |\t");
-	}
+        if(i==0)
+            printf("|z  |   ");
+        int spaces=precision/2;
+        if(precision%2==0)
+        {
+            printf("|");
+            for(k=0; k<spaces; k++)
+                printf(" ");
+            printf("%d",i);
+            for(k=0; k<spaces; k++)
+                printf(" ");
+            printf(" |\t");
+        }
+        else
+        {
+            printf("|");
+            for(k=0; k<spaces; k++)
+                printf(" ");
+            printf("%d",i);
+            for(k=0; k<spaces; k++)
+                printf(" ");
+            printf("  |\t");
+        }
     }
     for(j=0; j<(std/.1); j++)
     {
         printf("\n|%.1f|\t",index_col[j]);
-	double c;
-        for(c=0;c<10;c++){
+        double c;
+        for(c=0; c<10; c++)
+        {
             if(c!=9)
                 printf("|%.*lf|\t",precision,f(index_col[j]+(c/100),precision));
             else
                 printf("|%.*lf|",precision,f(index_col[j]+(c/100),precision));
         }
     }
+    pause();
+    savefile(std,index_col,precision);
 }
 
+// Função para verificar se o usuário deseja salvar a tabela criada
+void savefile(float std,float * index_col, int precision)
+{
+    clearscr();
+    savemenu();
+    char op[2];
+    scanf(" %s",op);
+    if(strcasecmp(op,"S")==0)
+        savecsv(std,index_col,precision);
+    else
+        clearscr();
+}
+
+// Salva a tabela em formato csv
+void savecsv(float std, float * index_col, int precision)
+{
+    FILE * p;
+    char FILENAME[81];
+    printf("Por favor digite o nome do arquivo o qual quer salvar: ");
+    scanf(" %s",FILENAME);
+    if ((p = fopen(strcat(FILENAME,".csv"), "w")) == NULL)
+    {
+        fprintf(stderr, "Erro na criação do arquivo %s!\n", FILENAME);
+        exit(1);
+    }
+    int k,i,j;
+    fprintf(p,"Tabela Z com mu=0 e sigma=%.2f,\n",std);
+    for(i=0; i<10; i++)
+    {
+        if(i==0)
+            fprintf(p,"z,");
+        if(i==9)
+            fprintf(p,"%d\n",i);
+        else
+            fprintf(p,"%d,",i);
+    }
+    for(j=0; j<(std/.1); j++)
+    {
+        fprintf(p,"%.1f,",index_col[j]);
+        double c;
+        for(c=0; c<10; c++)
+        {
+            if(c!=9)
+                fprintf(p,"%.*lf,",precision,f(index_col[j]+(c/100),precision));
+            else
+                fprintf(p,"%.*lf\n",precision,f(index_col[j]+(c/100),precision));
+        }
+    }
+    printf("Arquivo salvo com sucesso!! Está no mesmo diretório do arquivo do programa");
+    pause();
+    clearscr();
+}
+
+// Alerta para salvar o arquivo
+void savemenu()
+{
+    printf("++================================================++\n");
+    printf("||                   Atenção!!                    ||\n");
+    printf("++================================================++\n");
+    printf("||                                                ||\n");
+    printf("||  Deseja salvar a tabela em formato .csv?(S/N)  ||\n");
+    printf("||                                                ||\n");
+    printf("++================================================++\n");
+}
 // Interface de menu
 void menu()
 {
@@ -139,10 +217,10 @@ float * create_index_col(float std)
     float * index_col=malloc((index_qtd+1+resto)*sizeof(float));
     for(i=0; i<index_qtd; i++)
     {
-	if (i==0)
-	    index_col[i]=.0;
-	else
-	    index_col[i]=index_col[i-1]+.1;
+        if (i==0)
+            index_col[i]=.0;
+        else
+            index_col[i]=index_col[i-1]+.1;
     }
     return index_col;
 }
@@ -150,7 +228,7 @@ float * create_index_col(float std)
 // Retorna a função de probabilidade cumulativa - 0.5
 double f(double x,int precision)
 {
-    return higher_precision((.5*erfc(-x*M_SQRT1_2))-.5,precision);
+    return higher_precision(.5*erfc(x*-M_SQRT1_2)-.5,precision);
 }
 
 // Delimita e valida a precisão
@@ -172,12 +250,10 @@ int main()
         {
         case 1:
             input_std(&std);
-	    input_precision(&precision);
+            input_precision(&precision);
             clearscr();
             index_col=create_index_col(std);
             print_table(std,&(*index_col),precision);
-            pause();
-            clearscr();
             break;
         case 2:
             return 0;
